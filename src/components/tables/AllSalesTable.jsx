@@ -228,111 +228,197 @@
 
 
 
-import React, { useState } from 'react'
-import { Table } from 'react-bootstrap'
-import { allProductData } from '../../data/Data';
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
-import PaginationSection from './PaginationSection';
+// import React, { useState } from 'react'
+// import { Table } from 'react-bootstrap'
+// import { allProductData } from '../../data/Data';
+// import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
+// import PaginationSection from './PaginationSection';
 
-const AllSalesTable = () => {
-    const [currentPage, setCurrentPage] = useState(1);
-    const [dataPerPage] = useState(10);
-    const dataList = allProductData
+// const AllSalesTable = () => {
+//     const [currentPage, setCurrentPage] = useState(1);
+//     const [dataPerPage] = useState(10);
+//     const dataList = allProductData
      
-     const indexOfLastData = currentPage * dataPerPage;
-     const indexOfFirstData = indexOfLastData - dataPerPage;
-     const currentData = dataList.slice(indexOfFirstData, indexOfLastData);
+//      const indexOfLastData = currentPage * dataPerPage;
+//      const indexOfFirstData = indexOfLastData - dataPerPage;
+//      const currentData = dataList.slice(indexOfFirstData, indexOfLastData);
    
-     const paginate = (pageNumber) => {
-       setCurrentPage(pageNumber);
-     };
+//      const paginate = (pageNumber) => {
+//        setCurrentPage(pageNumber);
+//      };
      
-     const totalPages = Math.ceil(dataList.length / dataPerPage);
-     const pageNumbers = [];
-     for (let i = 1; i <= totalPages; i++) {
-       pageNumbers.push(i);
-     }
+//      const totalPages = Math.ceil(dataList.length / dataPerPage);
+//      const pageNumbers = [];
+//      for (let i = 1; i <= totalPages; i++) {
+//        pageNumbers.push(i);
+//      }
    
+//   return (
+//     <>
+//     <OverlayScrollbarsComponent>
+//         <Table className="table table-dashed table-hover digi-dataTable all-product-table table-striped" id="allProductTable">
+//             <thead>
+//                 <tr>
+//                     <th className="no-sort">
+//                         <div className="form-check">
+//                             <input className="form-check-input" type="checkbox" id="markAllProduct"/>
+//                         </div>
+//                     </th>
+//                     <th>Product</th>
+//                     <th>ID</th>
+//                     <th>Stock</th>
+//                     <th>InStock</th>
+//                     <th>Color</th>
+//                     <th>Size</th>
+//                     <th>Price</th>
+//                     <th>Modal Number</th>
+//                     <th>Added Date</th>
+//                     <th>Status </th>
+//                     <th>Action</th>
+//                 </tr>
+//             </thead>
+//             <tbody>
+//                 {currentData.map((data)=>(
+//                 <tr key={data.id}>
+//                     <td>
+//                         <div className="form-check">
+//                             <input className="form-check-input" type="checkbox"/>
+//                         </div>
+//                     </td>
+//                     <td>
+//                         <div className="table-product-card">
+//                             <div className="part-img">
+//                                 <img src={data.image} alt={data.product_name}/>
+//                             </div>
+//                             <div className="part-txt">
+//                                 <span className="product-name">{data.product_name}</span>
+//                                 <span className="product-category">Category: {data.category}</span>
+//                             </div>
+//                         </div>
+//                     </td>
+//                     <td>{data.sku}</td>
+//                     <td>{data.stock}</td>
+//                     <td>10</td>
+//                     <td>Blue</td>
+//                     <td>6</td>
+//                     <td>${data.price}</td>
+//                     <td>{data.sales}</td>
+//                     {/* <td>
+//                         <div className="rating">
+//                             <div className="star">
+//                                 <i className="fa-solid fa-star starred"></i>
+//                                 <i className="fa-solid fa-star starred"></i>
+//                                 <i className="fa-solid fa-star starred"></i>
+//                                 <i className="fa-solid fa-star starred"></i>
+//                                 <i className="fa-solid fa-star"></i>
+//                             </div>
+//                             <div className="rating-amount">({data.rating})</div>
+//                         </div>
+//                     </td> */}
+//                     <td>{data.published}</td>
+//                   <td>In Stock</td>
+//                     <td>
+//                         <div className="btn-box">
+//                             <button><i className="fa-light fa-eye"></i></button>
+//                             <button><i className="fa-light fa-pen"></i></button>
+//                             <button><i className="fa-light fa-trash"></i></button>
+//                         </div>
+//                     </td>
+//                 </tr>  
+//                 ))}
+            
+//             </tbody>
+//         </Table>
+//     </OverlayScrollbarsComponent>
+//     <PaginationSection currentPage={currentPage} totalPages={totalPages} paginate={paginate} pageNumbers={pageNumbers}/>
+//     </>
+//   )
+// }
+
+// export default AllSalesTable
+
+import React, { useEffect, useState } from "react";
+import { Table } from "react-bootstrap";
+import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
+import PaginationSection from "./PaginationSection";
+
+const AllTransactionsTable = () => {
+  const [transactions, setTransactions] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [dataPerPage] = useState(10);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchTransactions = async () => {
+      try {
+        const response = await fetch(
+          "http://127.0.0.1:8000/api/v1/financials/transactions_list/"
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch transactions");
+        }
+        const data = await response.json();
+        setTransactions(data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTransactions();
+  }, []);
+
+  // Pagination logic
+  const indexOfLastData = currentPage * dataPerPage;
+  const indexOfFirstData = indexOfLastData - dataPerPage;
+  const currentData = transactions.slice(indexOfFirstData, indexOfLastData);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const totalPages = Math.ceil(transactions.length / dataPerPage);
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+  if (loading) return <p>Loading transactions...</p>;
+  if (error) return <p>Error: {error}</p>;
+
   return (
     <>
-    <OverlayScrollbarsComponent>
-        <Table className="table table-dashed table-hover digi-dataTable all-product-table table-striped" id="allProductTable">
-            <thead>
-                <tr>
-                    <th className="no-sort">
-                        <div className="form-check">
-                            <input className="form-check-input" type="checkbox" id="markAllProduct"/>
-                        </div>
-                    </th>
-                    <th>Product</th>
-                    <th>ID</th>
-                    <th>Stock</th>
-                    <th>InStock</th>
-                    <th>Color</th>
-                    <th>Size</th>
-                    <th>Price</th>
-                    <th>Modal Number</th>
-                    <th>Added Date</th>
-                    <th>Status </th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {currentData.map((data)=>(
-                <tr key={data.id}>
-                    <td>
-                        <div className="form-check">
-                            <input className="form-check-input" type="checkbox"/>
-                        </div>
-                    </td>
-                    <td>
-                        <div className="table-product-card">
-                            <div className="part-img">
-                                <img src={data.image} alt={data.product_name}/>
-                            </div>
-                            <div className="part-txt">
-                                <span className="product-name">{data.product_name}</span>
-                                <span className="product-category">Category: {data.category}</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td>{data.sku}</td>
-                    <td>{data.stock}</td>
-                    <td>10</td>
-                    <td>Blue</td>
-                    <td>6</td>
-                    <td>${data.price}</td>
-                    <td>{data.sales}</td>
-                    {/* <td>
-                        <div className="rating">
-                            <div className="star">
-                                <i className="fa-solid fa-star starred"></i>
-                                <i className="fa-solid fa-star starred"></i>
-                                <i className="fa-solid fa-star starred"></i>
-                                <i className="fa-solid fa-star starred"></i>
-                                <i className="fa-solid fa-star"></i>
-                            </div>
-                            <div className="rating-amount">({data.rating})</div>
-                        </div>
-                    </td> */}
-                    <td>{data.published}</td>
-                  <td>In Stock</td>
-                    <td>
-                        <div className="btn-box">
-                            <button><i className="fa-light fa-eye"></i></button>
-                            <button><i className="fa-light fa-pen"></i></button>
-                            <button><i className="fa-light fa-trash"></i></button>
-                        </div>
-                    </td>
-                </tr>  
-                ))}
-            
-            </tbody>
+      <OverlayScrollbarsComponent>
+        <Table className="table table-hover table-striped">
+          <thead>
+            <tr>
+              <th>Transaction ID</th>
+              <th>Amount</th>
+              <th>Type</th>
+              <th>Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentData.map((transaction) => (
+              <tr key={transaction.id}>
+                <td>{transaction.id}</td>
+                <td>${transaction.amount}</td>
+                <td>{transaction.type}</td>
+                <td>{new Date(transaction.date).toLocaleDateString()}</td>
+                <td>{transaction.status}</td>
+              </tr>
+            ))}
+          </tbody>
         </Table>
-    </OverlayScrollbarsComponent>
-    <PaginationSection currentPage={currentPage} totalPages={totalPages} paginate={paginate} pageNumbers={pageNumbers}/>
+      </OverlayScrollbarsComponent>
+      <PaginationSection
+        currentPage={currentPage}
+        totalPages={totalPages}
+        paginate={paginate}
+        pageNumbers={pageNumbers}
+      />
     </>
-  )
-}
+  );
+};
 
-export default AllSalesTable
+export default AllTransactionsTable;
