@@ -53,36 +53,36 @@ const PagesPart = () => {
             <span className="sidebar-txt">Authentication</span>
           </Link>
           <ul className={`sidebar-dropdown-menu ${authentication ? 'd-block' : ''}`}>
-            <li className="sidebar-dropdown-item">
+            {/* <li className="sidebar-dropdown-item">
               <NavLink to="/login" className="sidebar-link">
                 Login 01
               </NavLink>
-            </li>
+            </li> */}
             <li className="sidebar-dropdown-item">
               <NavLink to="/login2" className="sidebar-link">
                 Login 02
               </NavLink>
             </li>
-            <li className="sidebar-dropdown-item">
+            {/* <li className="sidebar-dropdown-item">
               <NavLink to="/login3" className="sidebar-link">
                 Login 03
               </NavLink>
-            </li>
+            </li> */}
             <li className="sidebar-dropdown-item">
               <NavLink to="/registration" className="sidebar-link">
                 Registration 01
               </NavLink>
             </li>
-            <li className="sidebar-dropdown-item">
+            {/* <li className="sidebar-dropdown-item">
               <NavLink to="/registration2" className="sidebar-link">
                 Registration 02
               </NavLink>
-            </li>
-            <li className="sidebar-dropdown-item">
+            </li> */}
+            {/* <li className="sidebar-dropdown-item">
               <NavLink to="/resetPassword" className="sidebar-link">
                 Reset Password
               </NavLink>
-            </li>
+            </li> */}
             <li className="sidebar-dropdown-item">
               <NavLink to="/updatePassword" className="sidebar-link">
                 Update Password
@@ -95,7 +95,7 @@ const PagesPart = () => {
             </li>
           </ul>
         </li>
-        <li className="sidebar-dropdown-item">
+        {/* <li className="sidebar-dropdown-item">
           <Link
             role="button"
             className={`sidebar-link has-sub ${error ? 'show' : ''}`}
@@ -143,8 +143,8 @@ const PagesPart = () => {
               </NavLink>
             </li>
           </ul>
-        </li>
-        <li className="sidebar-dropdown-item">
+        </li> */}
+        {/* <li className="sidebar-dropdown-item">
           <Link
             role="button"
             className={`sidebar-link has-sub ${user ? 'show' : ''}`}
@@ -167,9 +167,9 @@ const PagesPart = () => {
               </NavLink>
             </li>
           </ul>
-        </li>
+        </li> */}
         <li className="sidebar-dropdown-item">
-          <Link
+          {/* <Link
             role="button"
             className={`sidebar-link has-sub ${additional ? 'show' : ''}`}
             onClick={toggleAdditional}
@@ -177,10 +177,10 @@ const PagesPart = () => {
             <span className="nav-icon">
               <i className="fa-light fa-square-plus"></i>
             </span>{' '}
-            <span className="sidebar-txt">Additional</span>
-          </Link>
-          <ul className={`sidebar-dropdown-menu ${additional ? 'd-block' : ''}`}>
-            <li className="sidebar-dropdown-item">
+            {/* <span className="sidebar-txt">Additional</span> */}
+          {/* </Link> */} 
+          {/* <ul className={`sidebar-dropdown-menu ${additional ? 'd-block' : ''}`}> */}
+            {/* <li className="sidebar-dropdown-item">
               <NavLink to="/comingSoon" className="sidebar-link">
               Coming Soon 01
               </NavLink>
@@ -189,23 +189,23 @@ const PagesPart = () => {
               <NavLink to="/comingSoon2" className="sidebar-link">
               Coming Soon 02
               </NavLink>
-            </li>
+            </li> */}
             {/* <li className="sidebar-dropdown-item">
               <NavLink to="/pricingTable" className="sidebar-link">
               Pricing Table 01
               </NavLink>
             </li> */}
-            <li className="sidebar-dropdown-item">
+            {/* <li className="sidebar-dropdown-item">
               <NavLink to="/pricingTable2" className="sidebar-link">
               Pricing Table 02
               </NavLink>
-            </li>
-            <li className="sidebar-dropdown-item">
+            </li> */}
+            {/* <li className="sidebar-dropdown-item">
               <NavLink to="/underConstruction" className="sidebar-link">
               Under Construction
               </NavLink>
-            </li>
-          </ul>
+            </li> */}
+          {/* </ul> */}
         </li>
         {/* <li className="sidebar-dropdown-item">
           <NavLink to="/utility" className="sidebar-link">

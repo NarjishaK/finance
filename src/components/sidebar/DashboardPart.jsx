@@ -18,12 +18,12 @@ const DashboardPart = () => {
       </Link>
       <ul className={`sidebar-link-group ${layoutPosition.horizontal ? (dropdownOpen.dashboard ? 'd-block' : '') : (isMainDropdownOpen ? 'd-none' : '')}`}>       
        <li className="sidebar-dropdown-item">
-          <NavLink to="/" className="sidebar-link">
+          {/* <NavLink to="/" className="sidebar-link">
             <span className="nav-icon">
               <i className="fa-light fa-cart-shopping-fast"></i>
             </span>{' '}
             <span className="sidebar-txt">eCommerce</span>
-          </NavLink>
+          </NavLink> */}
         </li>
         <li className="sidebar-dropdown-item">
           <NavLink
@@ -37,7 +37,7 @@ const DashboardPart = () => {
           </NavLink>
         </li>
         <li className="sidebar-dropdown-item">
-          <NavLink
+          {/* <NavLink
             to="/hrmDashboard"
             className="sidebar-link"
           >
@@ -45,7 +45,7 @@ const DashboardPart = () => {
               <i className="fa-light fa-user-tie"></i>
             </span>{' '}
             <span className="sidebar-txt">HRM</span>
-          </NavLink>
+          </NavLink> */}
         </li>
       </ul>
     </li>

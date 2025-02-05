@@ -29,7 +29,7 @@ const AppsPart = () => {
   
   const handleSubNavLinkClick = () => {
     if (!isSubDropdownOpen) {
-      toggleSubDropdown(); // Open the sub-dropdown
+      toggleSubDropdown(); 
     }
   };
   return (
@@ -63,31 +63,50 @@ const AppsPart = () => {
             id="crmDropdown"
            
           >
-            <li className="sidebar-dropdown-item">
+            {/* <li className="sidebar-dropdown-item">
               <NavLink to="/stocklist" className="sidebar-link" onClick={handleSubNavLinkClick}>
                 Stock List Report
               </NavLink>
-            </li>
+            </li> */}
+
+
+
+
+
             <li className="sidebar-dropdown-item">
-              <NavLink to="/purchaseditem" className="sidebar-link" onClick={handleSubNavLinkClick}>
+              <NavLink to="/allSales" className="sidebar-link" onClick={handleSubNavLinkClick}>
+                Sale Report 
+              </NavLink>
+            </li>
+
+            
+            <li className="sidebar-dropdown-item">
+              <NavLink to="/allPurchase" className="sidebar-link" onClick={handleSubNavLinkClick}>
                 Purchase Report 
               </NavLink>
             </li>
-            <li className="sidebar-dropdown-item">
+
+
+
+
+
+
+            {/* <li className="sidebar-dropdown-item">
               <NavLink to="/returnproduct" className="sidebar-link" onClick={handleSubNavLinkClick}>
                 Return Products Report
               </NavLink>
-            </li>
-            <li className="sidebar-dropdown-item">
+            </li> */}
+            {/* <li className="sidebar-dropdown-item">
               <NavLink to="/customerorders" className="sidebar-link" onClick={handleSubNavLinkClick}>
                Customer Order Management
               </NavLink>
-            </li>
-            <li className="sidebar-dropdown-item">
+            </li> */}
+            {/* <li className="sidebar-dropdown-item">
               <NavLink to="/salesorders" className="sidebar-link" onClick={handleSubNavLinkClick}>
-               Sales Order Management
+               Sales Management
               </NavLink>
-            </li>
+            </li> */}
+
           </ul>
         </li>
         <li className="sidebar-dropdown-item">
@@ -171,7 +190,7 @@ const AppsPart = () => {
           </ul>
         </li>
 
-        <li className="sidebar-dropdown-item">
+        {/* <li className="sidebar-dropdown-item">
           <Link
             role="button"
             className={`sidebar-link has-sub ${isAccountsDropdownOpen ? 'show' : ''}`}
@@ -180,7 +199,7 @@ const AppsPart = () => {
             <span className="nav-icon">
               <i className="fa-light fa-user-tie"></i>
             </span>{' '}
-            <span className="sidebar-txt">Accounts</span>
+            <span className="sidebar-txt">Finanace</span>
           </Link>
           <ul
             className={`sidebar-dropdown-menu ${
@@ -188,66 +207,33 @@ const AppsPart = () => {
             }`}
             id="accountsDropdown"
           >
+{/*   .................................   */}
+        {/* <li className="sidebar-dropdown-item">
+              <NavLink to="/allProduct" className="sidebar-link" onClick={handleSubNavLinkClick}>
+                Sale
+              </NavLink>
+            </li>
+
           <li className="sidebar-dropdown-item">
             <NavLink to="/leads" className="sidebar-link" onClick={handleSubNavLinkClick}>
-              Leads
+              Purchase
             </NavLink>
           </li>
+
           </ul>
-        </li>
+        </li>  */}
 
         {/* <li className="sidebar-dropdown-item">
-            <NavLink to="/task" className="sidebar-link" onClick={handleSubNavLinkClick}>
-              Task
-            </NavLink>
-          </li> */}
-
-        <li className="sidebar-dropdown-item">
-          <NavLink to="/task" className="sidebar-link">
-            <span className="nav-icon">
-              <i className="fa-light fa-calendar"></i>
-            </span>{' '}
-            <span className="sidebar-txt">Task</span>
-          </NavLink>
         </li>
         <li className="sidebar-dropdown-item">
-          <NavLink to="/calendar" className="sidebar-link">
-            <span className="nav-icon">
-              <i className="fa-light fa-calendar"></i>
-            </span>{' '}
-            <span className="sidebar-txt">Calendar</span>
-          </NavLink>
-        </li>
-        <li className="sidebar-dropdown-item">
-          <NavLink to="/chat" className="sidebar-link">
-            <span className="nav-icon">
-              <i className="fa-light fa-messages"></i>
-            </span>{' '}
-            <span className="sidebar-txt">Chat</span>
-          </NavLink>
-        </li>
-        <li className="sidebar-dropdown-item">
-          <NavLink to="/email" className="sidebar-link">
-            <span className="nav-icon">
-              <i className="fa-light fa-envelope"></i>
-            </span>{' '}
-            <span className="sidebar-txt">Email</span>
-          </NavLink>
-        </li>
+        </li> */}
+        
         <li className="sidebar-dropdown-item">
           <NavLink to="/invoices" className="sidebar-link">
             <span className="nav-icon">
               <i className="fa-light fa-file-invoice"></i>
             </span>{' '}
             <span className="sidebar-txt">Invoices</span>
-          </NavLink>
-        </li>
-        <li className="sidebar-dropdown-item">
-          <NavLink to="/contacts" className="sidebar-link">
-            <span className="nav-icon">
-              <i className="fa-light fa-user-plus"></i>
-            </span>{' '}
-            <span className="sidebar-txt">Contacts</span>
           </NavLink>
         </li>
       </ul>

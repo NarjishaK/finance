@@ -12,7 +12,11 @@ import AllEmployee from "./pages/AllEmployee"
 import Attendance from "./pages/Attendance"
 import AllCustomer from "./pages/AllCustomer"
 import AddNewProduct from "./pages/AddNewProduct"
+import AddSales from "./pages/AddSales"
+import AddPurchase from "./pages/AddPurchase"
 import AllProduct from "./pages/AllProduct"
+import AllSales from "./pages/AllSales"
+import AllPurchase from "./pages/AllPurchase"
 import Category from "./pages/Category"
 import Order from "./pages/Order"
 import Chat from "./pages/Chat"
@@ -51,37 +55,47 @@ import Error503 from "./pages/Error503"
 import Error504 from "./pages/Error504"
 import ComingSoon from "./pages/ComingSoon"
 import ComingSoon2 from "./pages/ComingSoon2"
-// import PricingTable from "./pages/PricingTable"
 import PricingTable2 from "./pages/PricingTable2"
 import UnderConstruction from "./pages/UnderConstruction"
-
-//
 import StockList from "./pages/Stocklist"
 import Salesorders from "./pages/salesorders"
+
 function App() {
   
   return (
     <Router>
       <Routes>
         <Route element={<Layout/>}>
-          <Route path="/" element={<Dashboard/>}/>
+          <Route path="/" element={<CrmDashboard/>}/>
+          <Route path="/inventorydashboard" element={<CrmDashboard/>}/>
+          <Route path="/allProduct" element={<AllProduct/>}/>
+          <Route path="/category" element={<Category/>}/>
+          <Route path="/addNewProduct" element={<AddNewProduct/>}/>
+          <Route path="/purchaseditem" element={<Customer/>}/>
+          <Route path="/allSales" element={<AllSales/>}/>
+          <Route path="/addSales" element={<AddSales/>}/>
+    
+          <Route path="/allpurchase" element={<AllPurchase/>}/>
+          <Route path="/addPurchase" element={<AddPurchase/>}/>
+
+
+
+
+
+
+
           <Route path="/stocklist" element={<StockList/>}/>
           <Route path="/salesorders" element={<Salesorders/>}/>
           <Route path="/fileManager" element={<FileManager/>}/>
-          <Route path="/inventorydashboard" element={<CrmDashboard/>}/>
           <Route path="/hrmDashboard" element={<HrmDashboard/>}/>
           <Route path="/returnproduct" element={<Return/>}/>
           <Route path="/supplier" element={<Company/>}/>
           <Route path="/task" element={<Task/>}/>
           <Route path="/leads" element={<Leads/>}/>
-          <Route path="/purchaseditem" element={<Customer/>}/>
           <Route path="/addEmployee" element={<AddEmployee/>}/>
           <Route path="/allEmployee" element={<AllEmployee/>}/>
           <Route path="/attendance" element={<Attendance/>}/>
           <Route path="/allCustomer" element={<AllCustomer/>}/>
-          <Route path="/addNewProduct" element={<AddNewProduct/>}/>
-          <Route path="/allProduct" element={<AllProduct/>}/>
-          <Route path="/category" element={<Category/>}/>
           <Route path="/customerorders" element={<Order/>}/>
           <Route path="/chat" element={<Chat/>}/>
           <Route path="/calendar" element={<Calendar/>}/>
