@@ -22,12 +22,12 @@ const InboxContent = () => {
     <EmailContentHeader title={'Inbox'}/>
     <div className="panel-body email-body-header">
         <div className="product-table-quantity d-flex flex-wrap align-items-center gap-2 mb-20">
-            <ul className="mb-0">
+            {/* <ul className="mb-0">
                 <li className="text-white">All (23)</li>
                 <li>Unread (19)</li>
                 <li>Draft (05)</li>
                 <li>Trash (05)</li>
-            </ul>
+            </ul> */}
             <ul className="top-action mb-0 d-none">
                 <li>|</li>
                 <li><button className="btn-flush" data-bs-toggle="tooltip" data-bs-title="Move to archive"><i className="fa-light fa-box-archive"></i></button></li>
