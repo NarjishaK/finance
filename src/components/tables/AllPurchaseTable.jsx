@@ -30,73 +30,45 @@ const AllPurchaseTable = () => {
         <Table className="table table-dashed table-hover digi-dataTable all-product-table table-striped" id="allProductTable">
             <thead>
                 <tr>
-                    <th className="no-sort">
-                        <div className="form-check">
-                            <input className="form-check-input" type="checkbox" id="markAllProduct"/>
-                        </div>
-                    </th>
-                    <th>Product</th>
                     <th>ID</th>
-                    <th>Stock</th>
-                    <th>InStock</th>
-                    <th>Color</th>
-                    <th>Size</th>
-                    <th>Price</th>
-                    <th>Modal Number</th>
-                    <th>Added Date</th>
-                    <th>Status </th>
+                    <th>Transaction ID</th>
+                    <th>User Name</th>
+                    <th>Service </th>
+                    <th>Service price</th>
+                    <th>Amount Paid</th>
+                    <th>Payment Status</th>
+                    <th>Payment Mode</th>
+                    <th>Sale Date</th>
+                    <th>Remarks </th>
+                    <th>Transaction Type</th>
+                    <th>Quantity</th>
+                    <th>Pay</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                {currentData.map((data)=>(
-                <tr key={data.id}>
-                    <td>
-                        <div className="form-check">
-                            <input className="form-check-input" type="checkbox"/>
-                        </div>
-                    </td>
-                    <td>
-                        <div className="table-product-card">
-                            <div className="part-img">
-                                <img src={data.image} alt={data.product_name}/>
-                            </div>
-                            <div className="part-txt">
-                                <span className="product-name">{data.product_name}</span>
-                                <span className="product-category">Category: {data.category}</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td>{data.sku}</td>
-                    <td>{data.stock}</td>
-                    <td>10</td>
-                    <td>Blue</td>
-                    <td>6</td>
-                    <td>${data.price}</td>
-                    <td>{data.sales}</td>
-                    {/* <td>
-                        <div className="rating">
-                            <div className="star">
-                                <i className="fa-solid fa-star starred"></i>
-                                <i className="fa-solid fa-star starred"></i>
-                                <i className="fa-solid fa-star starred"></i>
-                                <i className="fa-solid fa-star starred"></i>
-                                <i className="fa-solid fa-star"></i>
-                            </div>
-                            <div className="rating-amount">({data.rating})</div>
-                        </div>
-                    </td> */}
-                    <td>{data.published}</td>
-                  <td>In Stock</td>
+                
+                <tr>
+                    <td>1 </td>
+                    <td>ID 123</td>
+                    <td>Fathima</td>
+                    <td>Serice</td>
+                    <td>$100</td>
+                    <td>$50</td>
+                    <td>Pending</td>
+                    <td>COD</td>
+                    <td>11/02/2025</td>
+                  <td>Testing</td>
+                  <td>Purchase</td>
+                  <td>1</td>
+                  <td><button className='btn btn-primary'>Pay Now</button></td>
                     <td>
                         <div className="btn-box">
-                            <button><i className="fa-light fa-eye"></i></button>
                             <button><i className="fa-light fa-pen"></i></button>
                             <button><i className="fa-light fa-trash"></i></button>
                         </div>
                     </td>
                 </tr>  
-                ))}
             
             </tbody>
         </Table>
