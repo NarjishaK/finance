@@ -433,6 +433,35 @@ const companyData = [{
     "rating": 101,
     "published": "6/24/2022"
   }]
+  const allProductData1 = [{
+    "id":1,
+    "transactionId": 1,
+    "userName": "bferre0",
+    "service": "Amazon Fire Tablet",
+    "servicePrice": 588,
+    "amountPaid": 588,
+    "paymentStatus": "pending",
+    "paymentMode": "cash",
+    "saleDate": "11/1/2022",
+    "remarks": "None",
+    "transactionType": "sale",
+    "quantity": 1
+  },
+  {
+    "id":2,
+    "transactionId": 2,
+    "userName": "bferre0",
+    "service": "Amazon Fire Tablet",
+    "servicePrice": 588,
+    "amountPaid": 588,
+    "paymentStatus": "pending",
+    "paymentMode": "cash",
+    "saleDate": "11/1/2022",
+    "remarks": "None",
+    "transactionType": "sale",
+    "quantity": 1
+  }
+]
 
   const categoryData = [{
     "id":1,
@@ -604,6 +633,7 @@ const companyData = [{
     attendanceData,
     allCustomerData,
     allProductData,
+    allProductData1,
     categoryData,
     orderListData,
     emailData,

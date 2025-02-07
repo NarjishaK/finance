@@ -1,26 +1,38 @@
 import React, { useState } from 'react';
-import { Table, Modal, Button, Form } from 'react-bootstrap';
-import { allProductData } from '../../data/Data';
+import { Table, Modal, Button, Form, Row, Col } from 'react-bootstrap';
+import { allProductData1 } from '../../data/Data';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import PaginationSection from './PaginationSection';
 
 const AllPurchaseTable = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [dataPerPage] = useState(10);
-    const dataList = allProductData;
+    const dataList = allProductData1;
     const [showModal, setShowModal] = useState(false);
     const [amount, setAmount] = useState('');
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null);
     
-    // Open Modal
     const handleShowModal = () => setShowModal(true);
-    // Close Modal
     const handleCloseModal = () => setShowModal(false);
-    // Handle Payment
     const handleConfirmPayment = () => {
         alert(`Payment Amount :$${amount}`)
         setShowModal(false);  
     };
-
+    
+    const handleShowEditModal = (item) => {
+        setSelectedItem(item);
+        setShowEditModal(true);
+    };
+    const handleCloseEditModal = () => setShowEditModal(false);
+    const handleEditChange = (e) => {
+        setSelectedItem({ ...selectedItem, [e.target.name]: e.target.value });
+    };
+    const handleSaveChanges = () => {
+        console.log('Saved changes:', selectedItem);
+        setShowEditModal(false);
+    };
+    
     const indexOfLastData = currentPage * dataPerPage;
     const indexOfFirstData = indexOfLastData - dataPerPage;
     const currentData = dataList.slice(indexOfFirstData, indexOfLastData);
@@ -58,35 +70,37 @@ const AllPurchaseTable = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>ID 123</td>
-                            <td>Fathima</td>
-                            <td>Service</td>
-                            <td>$100</td>
-                            <td>$50</td>
-                            <td>Pending</td>
-                            <td>COD</td>
-                            <td>11/02/2025</td>
-                            <td>Testing</td>
-                            <td>Purchase</td>
-                            <td>1</td>
-                            <td>
-                                <button className='btn btn-primary' onClick={handleShowModal}>Pay Now</button>
-                            </td>
-                            <td>
-                                <div className="btn-box">
-                                    <button><i className="fa-light fa-pen"></i></button>
-                                    <button><i className="fa-light fa-trash"></i></button>
-                                </div>
-                            </td>
-                        </tr>
+                        {currentData.map((item, index) => (
+                            <tr key={index}>
+                                <td>{item.id}</td>
+                                <td>{item.transactionId}</td>
+                                <td>{item.userName}</td>
+                                <td>{item.service}</td>
+                                <td>${item.servicePrice}</td>
+                                <td>${item.amountPaid}</td>
+                                <td>{item.paymentStatus}</td>
+                                <td>{item.paymentMode}</td>
+                                <td>{item.saleDate}</td>
+                                <td>{item.remarks}</td>
+                                <td>{item.transactionType}</td>
+                                <td>{item.quantity}</td>
+                                <td>
+                                    <button className='btn btn-primary' onClick={handleShowModal}>Pay Now</button>
+                                </td>
+                                <td>
+                                    <div className="btn-box">
+                                        <button onClick={() => handleShowEditModal(item)}><i className="fa-light fa-pen"></i></button>
+                                        <button><i className="fa-light fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </Table>
             </OverlayScrollbarsComponent>
             <PaginationSection currentPage={currentPage} totalPages={totalPages} paginate={paginate} pageNumbers={pageNumbers} />
 
-            {/* Modal */}
+            {/* Payment Modal */}
             <Modal show={showModal} onHide={handleCloseModal} centered>
                 <Modal.Header closeButton>
                     <Modal.Title>Enter Payment Amount</Modal.Title>
@@ -107,6 +121,38 @@ const AllPurchaseTable = () => {
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleCloseModal}>Cancel</Button>
                     <Button variant="primary" onClick={handleConfirmPayment}>Confirm</Button>
+                </Modal.Footer>
+            </Modal>
+
+            {/* Edit Modal */}
+            <Modal show={showEditModal} onHide={handleCloseEditModal} centered size='lg'> 
+                <Modal.Header closeButton>
+                    <Modal.Title>Edit Details</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {selectedItem && (
+                        <Form>
+                            <Row>
+                                {Object.keys(selectedItem).map((key, index) => (
+                                    <Col md={6} key={index}>
+                                        <Form.Group>
+                                            <Form.Label>{key}</Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                name={key}
+                                                value={selectedItem[key]}
+                                                onChange={handleEditChange}
+                                            />
+                                        </Form.Group>
+                                    </Col>
+                                ))}
+                            </Row>
+                        </Form>
+                    )}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleCloseEditModal}>Cancel</Button>
+                    <Button variant="primary" onClick={handleSaveChanges}>Save Changes</Button>
                 </Modal.Footer>
             </Modal>
         </>
